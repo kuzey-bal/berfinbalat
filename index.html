@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berfin & Kuzey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fce4ec;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden; /* Animasyon sırasında kaydırmayı engellemek için */
+        }
+
+        .container {
+            padding: 30px;
+            border-radius: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .rose {
+            font-size: 100px;
+            margin-bottom: 20px;
+            /* Orijinal kalp atışı animasyonunu koruyalım */
+            animation: pulse 1.5s infinite alternate, pixelate-in 2s ease-out forwards;
+            /* İlk başta küçük ve şeffaf başlayacak */
+            opacity: 0;
+            transform: scale(0.1);
+            position: relative; /* clip-path için gerekli */
+            display: inline-block; /* clip-path'in düzgün çalışması için */
+        }
+
+        .text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 55px;
+            color: #d81b60;
+            font-weight: 700;
+            letter-spacing: 1px;
+            /* Gül animasyonundan sonra yazı belirmesi için gecikme ekleyelim */
+            opacity: 0;
+            animation: fadeInText 1s ease-out forwards 2.5s; /* 2.5 saniye sonra başla */
+        }
+
+        /* Kalp atışı benzeri animasyon */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Gülün pikselleşerek oluşma animasyonu */
+        @keyframes pixelate-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.1);
+                /* clip-path ile başlangıçta sadece orta kısmı göster */
+                clip-path: circle(1% at 50% 50%);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.7);
+                /* Ortadan dışarı doğru büyüyen bir efekt */
+                clip-path: circle(50% at 50% 50%);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                /* Tamamen görünür hale gel */
+                clip-path: circle(75% at 50% 50%); /* Daha yumuşak bir bitiş */
+            }
+        }
+
+        /* Yazının yavaşça belirmesi için animasyon */
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="rose">🌹</div>
+
+        <div class="text">berfin kalp kuzey</div>
+    </div>
+
+</body>
+</html>
